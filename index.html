@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Elkeiy</title>
+<style>
+  :root {
+    --text: #333;
+    --muted: #777;
+    --link: #2a6496;
+    --border: #eaeaea;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    margin: 0;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 30px 80px;
+  }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .header h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+  }
+  .header .title {
+    color: var(--muted);
+    margin: 0 0 4px;
+    font-size: 15.5px;
+  }
+  .header .email {
+    margin: 0 0 12px;
+    font-size: 14.5px;
+  }
+  .header .links {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .header .links a { margin: 0 8px; }
+
+  /* SECTIONS */
+  section { margin-bottom: 38px; }
+  h5 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #555;
+    margin: 0 0 16px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  p { margin: 0 0 14px; }
+
+  /* News */
+  .news-item {
+    margin-bottom: 10px;
+    font-size: 14.5px;
+  }
+  .news-item .news-date {
+    font-weight: 700;
+    color: #555;
+    margin-right: 6px;
+  }
+
+  /* Entries */
+  .entry { margin-bottom: 20px; }
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+  .entry-head .role { font-weight: 700; font-size: 15px; }
+  .entry-head .date {
+    color: var(--muted);
+    font-size: 13.5px;
+    white-space: nowrap;
+  }
+  .entry .org {
+    color: #555;
+    font-size: 14.5px;
+    margin-bottom: 4px;
+  }
+  .entry .desc { font-size: 14.5px; color: #444; }
+
+  /* Publications */
+  .pub-year {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin: 24px 0 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pub { margin: 16px 0 20px; }
+  .pub .pub-title { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
+  .pub .pub-authors { font-size: 14.5px; color: #444; margin-bottom: 2px; }
+  .pub .pub-venue { font-size: 14px; color: var(--muted); font-style: italic; }
+
+  /* Interests */
+  .interests-text { font-size: 14.5px; color: #444; }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    margin: 20px 0;
+    padding: 10px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #333;
+    transform: translateX(-50%);
+  }
+  .tl-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    min-height: 80px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 14px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #d96666;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  .tl-left, .tl-right { width: 50%; box-sizing: border-box; }
+  .tl-left { padding-right: 40px; text-align: right; }
+  .tl-right { padding-left: 40px; text-align: left; }
+  .tl-date {
+    display: inline-block;
+    background: #fff5f5;
+    color: #c0392b;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+  }
+  .tl-org {
+    display: inline-block;
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 14.5px;
+    margin-bottom: 8px;
+  }
+  .tl-role { font-weight: 700; font-size: 14px; color: #333; margin-bottom: 2px; }
+  .tl-desc { font-size: 13.5px; color: #555; line-height: 1.5; }
+  .tl-meta-row { margin-bottom: 4px; }
+  .cv-link { margin-bottom: 10px; font-size: 14.5px; }
+
+  /* Footer */
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12.5px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .container { padding: 40px 22px 60px; }
+    .photo { width: 130px; height: 130px; }
+    .header h1 { font-size: 26px; }
+    .timeline::before { left: 20px; }
+    .tl-item::before { left: 20px; }
+    .tl-item { flex-direction: column; }
+    .tl-left, .tl-right {
+      width: 100%;
+      padding-left: 45px;
+      padding-right: 0;
+      text-align: left;
+    }
+    .tl-left { margin-bottom: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="photo">
+      <img src="prof_pic.jpg" alt="Mohamed Elkeiy">
+    </div>
+    <h1>Mohamed Elkeiy</h1>
+    <p class="title">Senior Power Electronics Control Engineer &middot; Filderstadt, Germany</p>
+    <p class="email"><a href="mailto:mohamed.elkeiy@outlook.com">mohamed.elkeiy@outlook.com</a></p>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/mohamed-elkeiy-5183a4aa" target="_blank" rel="noopener">LinkedIn</a> &middot;
+      <a href="#publications">Publications</a> &middot;
+      <a href="#cv">CV</a>
+    </div>
+  </header>
+
+  <section>
+    <h5>About</h5>
+    <p>Hello! I am a development engineer specializing in <strong>power electronics</strong>, <strong>hardware development</strong>, and <strong>control systems</strong> for high-voltage converters and electric motor drives. I obtained my M.Sc. in Electrical Engineering at the <a href="https://www.tum.de/" target="_blank" rel="noopener">Technical University of Munich (TUM)</a>, where I focused on power electronics, control systems, and energy systems. Prior to that, I obtained my B.Sc. in Electrical Engineering at <a href="https://www.alexu.edu.eg/" target="_blank" rel="noopener">Alexandria University</a>.</p>
+    <p>I am currently a Senior Power Electronics Control Engineer at <strong>Flex</strong> in Filderstadt, working on the control design and software implementation of a high-power on-board charger (OBC) for Ford electric vehicles. My day-to-day work spans model-based design of PFC, HV-DC, and DC stages; V-Model development; and HIL rapid prototyping. I have international R&amp;D experience across Germany, the United States, and Egypt, having previously worked at MKS Inc., Panasonic Industrial Devices, HILTI, and BMW Motorrad.</p>
+    <p>My primary research focus is centered around developing <strong>advanced control strategies</strong> for <strong>high-power converters in electromobility and grid applications</strong>. I am particularly interested in model predictive control for DAB converters, motor control, grid-tied converters, and wide-bandgap device-based topologies for EV fast charging.</p>
+    <p>I am always open to collaboration and discussion about research. If you are interested in power electronics, advanced converter control, or electromobility, please feel free to reach out!</p>
+  </section>
+
+  <section>
+    <h5>Research Interests</h5>
+    <p class="interests-text">Power Electronics for Electromobility &middot; HV DC-DC Converters &middot; On-Board Chargers (OBC) &middot; Model Predictive Control &middot; Dual Active Bridge (DAB) &middot; Wide-Bandgap (GaN/SiC) Devices &middot; Motor Control &middot; Grid-Tied Converters &middot; Multiport Charging Systems &middot; Model-Based Design &amp; HIL</p>
+  </section>
+
+  <section>
+    <h5>News</h5>
+    <div class="news-item"><span class="news-date">Aug 2025</span> Joined Flex as Senior Power Electronics Control Engineer, working on a high-power OBC for Ford EVs.</div>
+    <div class="news-item"><span class="news-date">Apr 2025</span> Started a short assignment at MKS Inc. (Wilmington, MA) on RPS generator control.</div>
+    <div class="news-item"><span class="news-date">Oct 2023</span> Joined Panasonic Industrial Devices as Hardware Development Manager for Mercedes-Benz HV DC-DC converters.</div>
+    <div class="news-item"><span class="news-date">Jul 2022</span> Joined HILTI R&amp;D Center as Development Engineer for Power Tools, working on motor control and inverter gate-drive validation.</div>
+    <div class="news-item"><span class="news-date">Oct 2022</span> Completed M.Sc. in Electrical Engineering at TU Munich.</div>
+    <div class="news-item"><span class="news-date">Jan 2021</span> Started as Research Associate at Alexandria University, working on multiport charging systems for EVs.</div>
+  </section>
+
+  <section>
+    <h5>Education</h5>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="role">Technical University of Munich (TUM), Germany</span>
+        <span class="date">2019 – 2022</span>
+      </div>
+      <div class="org">M.Sc. in Electrical Engineering</div>
+      <div class="desc">Major: Power Electronics, Control Systems, and Energy Systems &middot; Master's Thesis: Model-Based Design of Topology for Fast Chargers of Electric Vehicles</div>
+    </div>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="role">Alexandria University, Egypt</span>
+        <span class="date">2014 – 2019</span>
+      </div>
+      <div class="org">B.Sc. in Electrical Engineering</div>
+      <div class="desc">Major: Electronics, Motor Control, and Drive Systems &middot; Bachelor's Thesis: Design of Three-Phase Inverter for Induction Motors</div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h5>Publications</h5>
+    <div class="pub-year">2024</div>
+    <div class="pub">
+      <div class="pub-title">Model Predictive Control for Dual Active Bridge in Fast Charging Applications of Electric Vehicles</div>
+      <div class="pub-authors"><strong>Mohamed Elkeiy</strong> (Main author)</div>
+      <div class="pub-venue">IEEE Conference</div>
+    </div>
+    <div class="pub">
+      <div class="pub-title">Multiport DC-DC Converter with Differential Power Processing for Fast EV Charging Stations</div>
+      <div class="pub-authors"><strong>Mohamed Elkeiy</strong> (Main author)</div>
+      <div class="pub-venue">Sustainability Journal, MDPI</div>
+    </div>
+  </section>
+
+  <section id="cv">
+    <h5>Vitæ</h5>
+    <p class="cv-link">Full CV in <a href="Mohamed_Elkeiy_CV.pdf" target="_blank" rel="noopener">PDF</a>.</p>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left"></div>
+        <div class="tl-right">
+          <div class="tl-meta-row">
+            <span class="tl-org">Flex</span>
+            <span class="tl-date">Aug 2025 – Present</span>
+          </div>
+          <div class="tl-role">Senior Power Electronics Control Engineer — OBC Converters</div>
+          <div class="tl-desc">Control design and SW implementation of a high-power OBC for Ford EVs. Model-based PFC–HV-DC–DC control, V-Model development, HIL rapid prototyping.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-meta-row">
+            <span class="tl-date">Apr 2025 – Jun 2025</span>
+            <span class="tl-org">MKS Inc.</span>
+          </div>
+          <div class="tl-role">Firmware Power Electronics Engineer</div>
+          <div class="tl-desc">HVAC converter control for Remote Plasma Source (RPS) generators used in semiconductor fabs. Control architecture optimization for higher RPS power density.</div>
+        </div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"></div>
+        <div class="tl-right">
+          <div class="tl-meta-row">
+            <span class="tl-org">Panasonic Industrial Devices</span>
+            <span class="tl-date">Oct 2023 – Mar 2025</span>
+          </div>
+          <div class="tl-role">Power Electronics HW Development Manager — HV DC-DC</div>
+          <div class="tl-desc">HW design and simulation of HV DC-DC converters for Mercedes-Benz EVs. Hardware Project Manager (HPM), baseline management, production specifications across Panasonic sites.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-meta-row">
+            <span class="tl-date">Jul 2022 – Sep 2023</span>
+            <span class="tl-org">HILTI R&amp;D Center</span>
+          </div>
+          <div class="tl-role">Development Engineer — Power Tools</div>
+          <div class="tl-desc">Hardware testing and initial operation of cordless power tools. Inverter gate-drive simulation and validation. Motor control development for BLDC machines.</div>
+        </div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"></div>
+        <div class="tl-right">
+          <div class="tl-meta-row">
+            <span class="tl-org">Technical University of Munich</span>
+            <span class="tl-date">2019 – 2022</span>
+          </div>
+          <div class="tl-role">M.Sc. in Electrical Engineering</div>
+          <div class="tl-desc">Power Electronics, Control Systems, and Energy Systems. Thesis: Model-Based Design of Topology for Fast Chargers of Electric Vehicles.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-meta-row">
+            <span class="tl-date">Jan 2021 – Jun 2022</span>
+            <span class="tl-org">Alexandria University</span>
+          </div>
+          <div class="tl-role">Research Associate — Multiport Charging Systems for EVs</div>
+          <div class="tl-desc">Model-based design, mathematical modeling, and HIL validation of an EV charging converter. DAB control with PI and MPC schemes.</div>
+        </div>
+        <div class="tl-right"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left"></div>
+        <div class="tl-right">
+          <div class="tl-meta-row">
+            <span class="tl-org">BMW Motorrad</span>
+            <span class="tl-date">Aug 2020 – Dec 2020</span>
+          </div>
+          <div class="tl-role">Electrical Engineer Intern</div>
+          <div class="tl-desc">Calibration of strain gauge sensors for steering torque; motor-actuator control in ergonomics project; Simulink CAN data acquisition with CANdb++.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-meta-row">
+            <span class="tl-date">2014 – 2019</span>
+            <span class="tl-org">Alexandria University</span>
+          </div>
+          <div class="tl-role">B.Sc. in Electrical Engineering</div>
+          <div class="tl-desc">Electronics, Motor Control, and Drive Systems. Thesis: Design of Three-Phase Inverter for Induction Motors.</div>
+        </div>
+        <div class="tl-right"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Last updated May 2026 &middot; &copy; Mohamed Elkeiy
+  </footer>
+
+</div>
+</body>
+</html>
